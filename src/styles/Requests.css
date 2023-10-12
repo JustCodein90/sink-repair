@@ -1,3 +1,13 @@
-section {
-    margin-bottom: 10px; /* add margin to bottom of each request element */
+/* .newRequest {
+    display: flex;
+    flex-direction: row wrap;
+    border: 2px solid #000;  To picture the <ul> element
+    align-items: grid;
+} */
+
+/* puts a top margin on every request list*/
+.listParent {
+    margin-top: 2rem;
+    /* border: 2px solid #000;  Uncomment to get a view of the div for request list*/
+    /* width: 30%; */
 }
