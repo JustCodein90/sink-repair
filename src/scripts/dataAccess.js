@@ -1,4 +1,6 @@
 const applicationState = {
+    plumbers: [],
+    completions: [],
     requests: []
 }
 
@@ -7,8 +9,18 @@ const API = "http://localhost:8088"
 const mainContainer = document.querySelector("#container")
 
 
+
+
 export const getRequests = () => {
     return applicationState.requests.map(request => ({ ...request }))
+}
+
+export const getPlumbers = () => {
+    return applicationState.plumbers.map(plumber => ({...plumbers}))
+}
+
+export const getCompletions = () => {
+    return applicationState.completions.map(completion => ({...completions}))
 }
 
 
@@ -26,7 +38,31 @@ export const fetchRequests = () => {
         )
 }
 
+export const fetchPlumbers = () => {
+    return fetch(`${API}/plumbers`)
+        .then(response => response.json())
+        .then(
+            (data) => {
+                applicationState.plumbers = data
+            }
+        )
+}
 
+export const fetchCompletions = () => {
+    return fetch(`${API}/completions`)
+        .then(response => response.json())
+        .then(
+            (data) => {
+                applicationState.completions = data
+            }
+        )
+}
+
+
+
+
+
+// Function is responsible for sending a POST request to the API
 export const sendRequest = (userServiceRequest) => {
 
     // Fetch the data from the API
@@ -47,6 +83,21 @@ export const sendRequest = (userServiceRequest) => {
            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
+
+export const saveCompletion = (completion) => {
+    const fetchOptions = {
+        
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(completion)
+      }
+   
+    return fetch (`${API}/completions`, fetchOptions)
+      .then(response => response.json())
+}
+
 
 
 
