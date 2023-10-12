@@ -1,7 +1,6 @@
 import { fetchRequests } from "./dataAccess.js"
 import { SinkRepair } from "./SinkRepair.js"
 
-
 const mainContainer = document.querySelector("#container")
 
 const render = () => {
@@ -14,10 +13,9 @@ const render = () => {
 
 render()
 
-document.addEventListener(
+mainContainer.addEventListener(
     "stateChanged",
     customEvent => {
-        console.log('Custom Event Heard')
         render()
     }
 )
