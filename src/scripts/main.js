@@ -1,14 +1,3 @@
-// import { SinkRepair } from "./SinkRepair.js"
-
-
-// const mainContainer = document.querySelector("#container")
-
-// const render = () => {
-//     mainContainer.innerHTML = SinkRepair()
-// }
-
-// render()
-
 import { fetchRequests } from "./dataAccess.js"
 import { SinkRepair } from "./SinkRepair.js"
 
@@ -24,3 +13,11 @@ const render = () => {
 }
 
 render()
+
+document.addEventListener(
+    "stateChanged",
+    customEvent => {
+        console.log('Custom Event Heard')
+        render()
+    }
+)
