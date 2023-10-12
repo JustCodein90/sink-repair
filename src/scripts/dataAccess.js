@@ -42,7 +42,7 @@ export const sendRequest = (userServiceRequest) => {
     // Send the data to the API for permanent storage
     return fetch(`${API}/requests`, fetchOptions)
         .then(response => response.json())
-        .then(() => {
-
+        .then(() => {        
+           document.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
