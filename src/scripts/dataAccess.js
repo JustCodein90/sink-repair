@@ -2,13 +2,14 @@ const applicationState = {
     requests: []
 }
 
+const API = "http://localhost:8088"
+
+const mainContainer = document.querySelector("#container")
+
+
 export const getRequests = () => {
     return applicationState.requests.map(request => ({ ...request }))
 }
-
-
-
-const API = "http://localhost:8088"
 
 
 export const fetchRequests = () => {   
@@ -43,6 +44,18 @@ export const sendRequest = (userServiceRequest) => {
     return fetch(`${API}/requests`, fetchOptions)
         .then(response => response.json())
         .then(() => {        
-           document.dispatchEvent(new CustomEvent("stateChanged"))
+           mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
+}
+
+
+
+// Function initiate the fetch request to delete a request must have primary key sent to it as and argument
+export const deleteRequest = (id) => {
+    return fetch(`${API}/requests/${id}`, { method: "DELETE" })
+        .then(
+            () => {
+                mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            }
+        )
 }
