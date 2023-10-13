@@ -9,18 +9,16 @@ const API = "http://localhost:8088"
 const mainContainer = document.querySelector("#container")
 
 
-
-
 export const getRequests = () => {
     return applicationState.requests.map(request => ({ ...request }))
 }
 
 export const getPlumbers = () => {
-    return applicationState.plumbers.map(plumber => ({...plumbers}))
+    return applicationState.plumbers.map(plumber => ({ ...plumber }))
 }
 
 export const getCompletions = () => {
-    return applicationState.completions.map(completion => ({...completions}))
+    return applicationState.completions.map(completion => ({ ...completion }))
 }
 
 
@@ -47,6 +45,8 @@ export const fetchPlumbers = () => {
             }
         )
 }
+
+
 
 export const fetchCompletions = () => {
     return fetch(`${API}/completions`)
@@ -84,7 +84,7 @@ export const sendRequest = (userServiceRequest) => {
         })
 }
 
-export const saveCompletion = (completion) => {
+export const sendCompletion = (completion) => {
     const fetchOptions = {
         
         method: "POST",
