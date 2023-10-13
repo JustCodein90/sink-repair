@@ -1,13 +1,14 @@
 /* .newRequest {
     display: flex;
     flex-direction: row wrap;
-    border: 2px solid #000;  To picture the <ul> element
+    border: 2px solid #000;  ------------------To picture the <ul> element
     align-items: grid;
 } */
 
 /* puts a top margin on every request list*/
 .listParent {
     margin-top: 2rem;
-    /* border: 2px solid #000;  Uncomment to get a view of the div for request list*/
-    /* width: 30%; */
+    padding-bottom: .5rem;
+    border-bottom: 2px dashed blue;---------Uncomment to get a view of the <div> for request list
+    width: 30%;
 }
