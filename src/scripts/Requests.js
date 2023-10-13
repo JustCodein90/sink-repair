@@ -1,10 +1,10 @@
 import { getRequests } from "./dataAccess.js";
 import { getPlumbers } from "./dataAccess.js";
 import { deleteRequest } from "./dataAccess.js";
-import { saveCompletion } from "./dataAccess.js";
+import { sendCompletion } from "./dataAccess.js";
 
-const plumbers = getPlumbers()
 
+   
 const mainContainer = document.querySelector("#container")
 
 mainContainer.addEventListener("click", click => {
@@ -26,9 +26,11 @@ mainContainer.addEventListener(
                    2. plumberId
                    3. date_created
             */
-            const completion = { 
-                requestId,
-                plumberId
+            const completion = {
+                 serviceRequestId: parseInt(requestId),
+                plumberId: parseInt(plumberId),
+                date_completed: Date.now()
+            
             }
 
             /*
@@ -36,13 +38,14 @@ mainContainer.addEventListener(
                 to the `completions` resource for your API. Send the
                 completion object as a parameter.
              */
-            saveCompletion(completion)
+            sendCompletion(completion)
         }
     }
 )
 
 // Function converts request (parameter) array to HTML list items
 const convertRequestToList = (request) => {
+    const plumbers = getPlumbers()
     let html = `
         <div class="listParent"> 
             <li> 
@@ -65,23 +68,7 @@ const convertRequestToList = (request) => {
             
             </li>
         </div>` 
-            
-          // OTHER VALUES AVAILABLE IN THE REQUEST OBJECT///////
-          //ONLY NEED ONE BUTTON TO DELETE  WHOLE REQUEST////////
-
-            // <li> Address: ${request.address} </li>           
-            // <li> Budget: ${request.budget} </li>                                     
-                    
-            // <li>
-            //     Needed By: ${request.neededBy} 
-            //     <button class="request__delete"
-            //         id="request--${request.id}"> 
-            //         Delete 
-            //     </button>
-            // </li>         
-              
-                  
-
+           
     return html
 }
 
@@ -89,7 +76,8 @@ const convertRequestToList = (request) => {
  
 export const Requests = () => {
     const requests = getRequests()
-    
+   
+
     let html= `
         <ul class="newRequest">
         ${
